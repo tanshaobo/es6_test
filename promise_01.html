@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>promise初始化</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <p>是一个代理对象，它原来要进行的操作没有关系</p>       
+        <p>通过引入一个回调，避免更多回调（其它回调可由promise展开）</p>
+        <h4>promise三状态</h4>
+        <p>pending[待定] 初始状态   实例化的时候</p>
+        <p>fulfilled[实现]操作成功  调用resolve()</p>
+        <p>rejected[被否决]操作失败 调用reject()</p>
+        <h4>promise状态一经改变,就会立刻执行.then()内部函数,且状态不会再改变</h4>
+        
+        <script>
+             //基本样式
+            new Promise(
+//                    执行器 executor
+                    function (resolve, reject) {
+                        //       一段执行时间很长的异步操作
+                        resolve();      //数据处理完成
+                        reject();  //数据处理出错
+                    }
+            ).then(function A() {
+                //成功，下一步
+            }, function B() {
+                //失败
+            }
+            );
+        </script>
+    </body>
+</html>

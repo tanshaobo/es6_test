@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>.then()里面不返回promise</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            console.log('start');
+            new Promise(
+                    resolve => {
+                        setTimeout(() => {
+                            resolve('hello');
+                        }, 2000);
+                    }).then(value => {
+                console.log(value);
+                console.log('every day');
+                (() => {
+                    return new Promise(resolve => {
+                        setTimeout(() => {
+                            console.log('is good time');
+                            resolve('from now');
+                        }, 2000);
+                    });
+                })();
+                return false;
+            }).then(value => {
+                console.log(value + 'world');
+            })
+
+        </script>
+    </body>
+</html>
