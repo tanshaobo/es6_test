@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>promise test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <h3>promise  本质上是一个绑定了回调的对象，而不是将回调传进函数内部</h3>
+            <p>promise 用于异步计算  一个promise代表一个值，可能现在使用，或者将来使用，或者永远不使用</p>
+            <p>是一个代理对象，它原来要进行的操作没有关系   </p>       
+            <p>通过引入一个回调，避免更多回调（其它回调可由promise展开）</p>
+
+        </div>
+        <script>
+            //基本样式
+            new Promise(
+//                    执行器 executor
+                    function (resolve, reject) {
+                        //       一段执行时间很长的异步操作
+                        resolve();      //数据处理完成
+                        reject();  //数据处理出错
+                    }
+            ).then(function A() {
+                //成功，下一步
+            }, function B() {
+                //失败
+            }
+            );
+            //Promise  
+            //通过引入一个回调，避免更多回调
+            //三状态     pending[待定] 初始状态   实例化的时候
+            //           fulfilled[实现]操作成功  调用resolve()
+            //           rejected[被否决]操作失败 调用reject()
+            //状态发生改变，立即触发.then()内部的响应函数处理后续步骤
+//            状态一经改变，不会再变
+//执行顺序        new Promise(executer) -->executor-->.then()-->.then()-->.then()
+
+//示例
+//            console.log('开始执行');
+//            resolve =>{
+//                  return  resolve('hello');
+//                  r=>{};
+//            };
+//            function resolve(){
+//               return resolve('hello');
+//            }
+
+            for (var i = 0; i < 5; i++)
+            {
+                (function (j) {
+                    var a = j;
+                    setTimeout(function () {
+                        console.log(new Date, a)
+                    }, 1000)
+                })(i)
+            }
+
+            for (let i = 0; i < 5; i++)
+            {
+
+                setTimeout(function () {
+                    console.log(new Date, i)
+                }, 1000)
+
+            }
+
+            function Cat() {
+                this.name = 'cat';
+                this.color = 'white';
+            }
+            var cat = new Cat();
+
+            console.log(cat);
+
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject('hello');
+                }, 2000);
+            }
+            ).then(value => {
+                console.log(value + " " + 'world');
+            }).catch(value => {
+                console.log(value + ' ' + 'promise');
+            });
+
+
+//             new Promise(function (resolve){
+//                setTimeout(function(){
+//                    resolve('hello');
+//                },2000);
+//            }).then(function (value){
+//                console.log(value+" "+'world');
+//            });
+        </script>
+    </body>
+</html>
