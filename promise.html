@@ -64,11 +64,9 @@ and open the template in the editor.
 
             for (let i = 0; i < 5; i++)
             {
-
                 setTimeout(function () {
                     console.log(new Date, i)
                 }, 1000)
-
             }
 
             function Cat() {
@@ -78,7 +76,6 @@ and open the template in the editor.
             var cat = new Cat();
 
             console.log(cat);
-
             new Promise((resolve, reject) => {
                 setTimeout(() => {
                     reject('hello');
