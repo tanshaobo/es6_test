@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>promise初始化</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <p>promise 本质上是一个绑定了回调的对象，而不是将回调传进函数内部</p>
+            <p>是一个代理对象，它原来要进行的操作没有关系</p>
+            <a href="test/test_01.html">例(1)</a>
+            <p>promise   用于异步计算  一个promise代表一个值，可能现在使用，或者将来使用，或者永远不使用</p>
+            <p>通过引入一个回调，避免更多回调（其它回调可由promise展开）</p>
+            <a href="test/test_02.html">例(2)</a>
+            <p>promise三状态</p>
+            <p>pending[待定] 初始状态            实例化的时候</p>
+            <p>fulfilled[实现]操作成功           调用resolve()</p>
+            <p>rejected[被否决]操作失败          调用reject()</p>
+            <p>promise状态一经改变,就会立刻执行.then()内部函数,且状态不会再改变</p>
+            <a href="test/test_03.html">例（3）</a>
+        </div>
+        <div>
+            <p>.then()接受两个函数作为参数，分别代表fulfilled和rejected</p> 
+            <p>.then()返回一个新的Promise实例，所以可以链式调用</p>
+            <p>当前面的Promise状态改变时，.then()根据其最终状态，选择特定的状态响应函数执行</p>
+            <p>状态响应函数可返回新的Promise,或其他值(主要看响应函数里面是什么)</p>
+            <p>如果返回新的Promise,那么下一级的.then()会在新的Promise状态改变之后执行，否则立即执行</p>
+            <a href="test/test_04.html">例（4）</a>
+        </div>
+        <div>
+            <p>Promise会自动捕获内部异常，并交给rejected响应函数处理</p>
+            <a href="test/test_05.html">例（5）</a>               
+            <a href="test/test_06.html">例（6）</a>
+        </div>
+        <div>
+            <p>Promise.all([p1,p2,p3])用于将多个Promise包装成一个新的Promise实例</p>
+            <p>返回的实例就是普通的promise</p>
+            <p>接收一个数组作为参数，数组可以是promise对象，也可以是其他值，只有promise对象会等待状态改变</p>
+            <p>当所有子Promise完成时,该Promise完成,返回值是全部值的数组</p>
+            <p>有一个子Promise失败，则该Promise失败，并返回第一个失败的子Promise</p>
+            <a href="test/test_07.html">例（7）</a>
+        </div>
+        <div>
+            <p>Promise.race()与promise.all()类似，区别是有任意一个子Promise完成就算完成</p>
+            <a href='test/test_08.html'>例（8）</a>
+        </div>
+        <div>
+            <p>Promise.resolve()返回一个fulfilled的Promise实例，或原始Promise实例</p>
+            <p>参数为空，返回一个状态为fulfilledPromise实例,<br>
+                参数若是与Promise无关的值，则fulfilled响应函数会得到这个参数，<br>
+                参数若为promise实例，则不做任何修改直接返回,
+                参数若为thenable，则立即执行它的.then()
+            </p>
+            <a href='test/test_09.html'>例（9）</a>
+        </div>
+        <div>
+            <p>Promise.reject()返回一个rejected的Promise实例</p>
+            <p>不支持thenable</p>
+            <a href='test/test_10.html'>例（10）</a>
+        </div>
+        <script>
+            //基本样式
+            new Promise(
+//                    执行器 executor
+                    function (resolve, reject) {
+                        //       一段执行时间很长的异步操作
+                        resolve();      //数据处理完成
+                        reject();  //数据处理出错
+                    }
+            ).then(function A() {
+                //成功，下一步
+            }, function B() {
+                //失败
+            }
+            );
+        </script>
+    </body>
+</html>

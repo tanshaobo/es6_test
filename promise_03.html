@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>promise 两步执行</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <p></p>
+        <script>
+            console.log('start');
+            new Promise(
+                    resolve => {
+                        setTimeout(() => {
+                            resolve('hello');
+                        }, 2000);
+                    }
+            ).then(value => {
+                console.log(value);
+                return new Promise(
+                        resolve => {
+                            setTimeout(() => {
+                                resolve('world')
+                            }, 2000);
+                        }
+                );
+            }).then(value=>{
+                console.log(value+' world');
+            });
+        </script>
+    </body>
+</html>

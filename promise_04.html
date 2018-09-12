@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>promise完成之后再.then()</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            console.log('start');
+
+            let promise = new Promise(
+                    resolve => {
+                        setTimeout(() => {
+                            console.log('the promise fulfilled');
+                            resolve('hello world');
+                        }, 1000);
+                    });
+            setTimeout(() => {
+                promise.then(value => {
+                    console.log(value);
+                });
+            }, 2000);
+        </script>
+    </body>
+</html>
