@@ -9,12 +9,15 @@ and open the template in the editor.
         <title>promise初始化</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            div{margin: 40px 20px;}
+            p{margin: 10px 0;}
+        </style>
     </head>
     <body>
-
-        <div>
+        <div>            
             <p>promise 本质上是一个绑定了回调的对象，而不是将回调传进函数内部</p>
-            <p>是一个代理对象，它原来要进行的操作没有关系</p>
+            <p>是一个代理对象，它与原来要进行的操作没有关系</p>
             <a href="test/test_01.html">例(1)</a>
             <p>promise   用于异步计算  一个promise代表一个值，可能现在使用，或者将来使用，或者永远不使用</p>
             <p>通过引入一个回调，避免更多回调（其它回调可由promise展开）</p>
