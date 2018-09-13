@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            console.log('start');
+            let promise = Promise.reject('something is wrong');
+            promise.then(value => {
+                console.log("It is OK");
+            })
+                    .catch(() => {
+                        console.log('It is not OK');
+                        return Promise.reject({
+                            then() {
+                                console.log('It will be OK');
+                            },
+                            catch () {
+                                console.log('not');
+                            }
+                        });
+                    });
+        </script>
+    </body>
+</html>

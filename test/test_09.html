@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            console.log('start');
+            Promise.resolve()
+                    .then(value => {
+                        console.log("1:" + value);
+                        return Promise.resolve('Hello');
+
+                    })
+                    .then(value => {
+                        console.log('2:' + value);
+                        return Promise.resolve(new Promise(
+                                resolve => {
+                                    setTimeout(() => {
+                                        resolve('good');
+                                    }, 2000);
+                                }))
+                    }).then(value => {
+                console.log('3:' + value);
+                return Promise.resolve({
+                    then() {
+                        console.log('4:over');
+                    }
+                }
+                )
+            })
+
+
+        </script>
+    </body>
+</html>
